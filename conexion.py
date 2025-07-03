@@ -19,4 +19,3 @@ principal.config["PERMANENT_SESSION_LIFETIME"] = timedelta(seconds=10)
 
 if __name__ == '__main__':
     principal.run(debug=True, host='0.0.0.0')
-              
