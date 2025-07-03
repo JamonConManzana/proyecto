@@ -14,7 +14,7 @@ cursor= mysql.connector.cursor(host="localhost",
                                 password="",
                                 database="dbtrastearte")
 principal.config['CARPETAU'] = os.path.join('uploads')
-principal.secret_key = str(randint(10000,99999))
+principal.secret_key = str(randint(10000,99999))  
 principal.config["PERMANENT_SESSION_LIFETIME"] = timedelta(seconds=10)
 
 if __name__ == '__main__':
