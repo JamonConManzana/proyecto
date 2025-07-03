@@ -10,7 +10,7 @@ import mysql.connector.pooling
 principal = Flask(__name__)
 cursor= mysql.connector.cursor(host="localhost",
                                 port="3306",
-                                user="root",
+                                user="root",  
                                 password="",
                                 database="dbtrastearte")
 principal.config['CARPETAU'] = os.path.join('uploads')
