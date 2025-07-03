@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Provedores</title>
+</head>
+<body>
+
+    <h1>Gestión de Provedores</h1>
+
+    <h2>Registrar Nuevo Proveedor</h2>
+    <form method="post" action="('provedores') }}">
+        <label for="nombre">Nombre del proveedor:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="telefono">Teléfono:</label><br>
+        <input type="text" id="telefono" name="telefono"><br><br>
+
+        <label for="email">Correo electrónico:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="direccion">Dirección:</label><br>
+        <textarea id="direccion" name="direccion"></textarea><br><br>
+
+        <button type="submit">Guardar Proveedor</button>
+    </form>
+
+    <h2>Lista de Provedores</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se insertarán los proveedores desde el backend -->
+        </tbody>
+    </table>
+
+</body>
+</html>

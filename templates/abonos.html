@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Abonos</title>
+</head>
+<body>
+    <h1>Abonos</h1>
+
+    <!-- Formulario para registrar un abono -->
+    <h2>Registrar Abono</h2>
+    <form method="post" action="{{ url_for('abonos') }}">
+        <label for="cliente_id">ID del Cliente:</label>
+        <input type="number" id="cliente_id" name="cliente_id" required><br>
+
+        <label for="fecha_abono">Fecha del Abono:</label>
+        <input type="date" id="fecha_abono" name="fecha_abono" required><br>
+
+        <label for="monto">Monto del Abono:</label>
+        <input type="number" id="monto" name="monto" step="0.01" required><br>
+
+        <label for="comentario">Comentario:</label>
+        <textarea id="comentario" name="comentario"></textarea><br>
+
+        <button type="submit">Guardar Abono</button>
+    </form>
+
+    <!-- Lista de abonos -->
+    <h2>Lista de Abonos</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Abono</th>
+                <th>ID Cliente</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Comentario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ejemplo de fila -->
+            <tr>
+                <td>1</td>
+                <td>12</td>
+                <td>2025-06-07</td>
+                <td>100.00</td>
+                <td>Pago parcial factura #45</td>
+                <td>
+                    <a href="/abonos/editar/1">Editar</a> |
+                    <a href="/abonos/eliminar/1">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Lotes de Productos</title>
+</head>
+<body>
+    <h1>Lotes de Productos</h1>
+
+    <!-- Formulario para registrar un nuevo lote -->
+    <h2>Agregar Lote</h2>
+    <form method="post" action="{{ ('lote_productos') }}">
+        <label for="producto_id">ID del Producto:</label>
+        <input type="number" id="producto_id" name="producto_id" required><br>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required><br>
+
+        <label for="fecha_ingreso">Fecha de Ingreso:</label>
+        <input type="date" id="fecha_ingreso" name="fecha_ingreso" required><br>
+
+        <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
+        <input type="date" id="fecha_vencimiento" name="fecha_vencimiento"><br>
+
+        <button type="submit">Guardar Lote</button>
+    </form>
+
+    <!-- Lista de lotes existentes -->
+    <h2>Lista de Lotes</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Lote</th>
+                <th>ID Producto</th>
+                <th>Cantidad</th>
+                <th>Fecha Ingreso</th>
+                <th>Fecha Vencimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ejemplo de fila (reemplazar con datos reales del backend) -->
+            <tr>
+                <td>1</td>
+                <td>5</td>
+                <td>100</td>
+                <td>2025-06-01</td>
+                <td>2026-06-01</td>
+                <td>
+                    <a href="/lote_productos/editar/1">Editar</a> |
+                    <a href="/lote_productos/eliminar/1">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

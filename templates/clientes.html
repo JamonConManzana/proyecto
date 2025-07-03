@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+</head>
+<body>
+    <h1>Gestión de Clientes</h1>
+
+    <!-- Formulario para agregar nuevo cliente -->
+    <h2>Agregar Cliente</h2>
+    <form method="post" action="{{ url_for('clientes') }}">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required><br>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo"><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono"><br>
+
+        <label for="direccion">Dirección:</label>
+        <textarea id="direccion" name="direccion"></textarea><br>
+
+        <button type="submit">Guardar Cliente</button>
+    </form>
+
+    <!-- Lista de clientes -->
+    <h2>Lista de Clientes</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Cliente</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellido }}</td>
+                <td>{{ cliente.correo }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>
+                    <a href="/clientes/editar/{{ cliente.id }}">Editar</a> |
+                    <form method="post" action="/clientes/eliminar/{{ cliente.id }}" style="display:inline;">
+                        <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este cliente?');">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

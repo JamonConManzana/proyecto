@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Compras</title>
+</head>
+<body>
+    <h1>Compras</h1>
+
+    <!-- Formulario para registrar una nueva compra -->
+    <h2>Registrar Compra</h2>
+    <form method="post" action="/compras/agregar">
+        <label for="proveedor_id">ID del Proveedor:</label>
+        <input type="number" id="proveedor_id" name="proveedor_id" required><br>
+
+        <label for="fecha_compra">Fecha de Compra:</label>
+        <input type="date" id="fecha_compra" name="fecha_compra" required><br>
+
+        <label for="total">Total:</label>
+        <input type="number" id="total" name="total" step="0.01" required><br>
+
+        <label for="metodo_pago">Método de Pago:</label>
+        <input type="text" id="metodo_pago" name="metodo_pago"><br>
+
+        <button type="submit">Guardar Compra</button>
+    </form>
+
+    <!-- Lista de compras registradas -->
+    <h2>Compras Registradas</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Compra</th>
+                <th>ID Proveedor</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Método de Pago</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compra in compras %}
+            <tr>
+                <td>{{ compra.id }}</td>
+                <td>{{ compra.proveedor_id }}</td>
+                <td>{{ compra.fecha_compra }}</td>
+                <td>{{ compra.total }}</td>
+                <td>{{ compra.metodo_pago }}</td>
+                <td>
+                    <a href="/compras/ver/{{ compra.id }}">Ver</a> |
+                    <a href="/compras/eliminar/{{ compra.id }}">Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">No hay compras registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

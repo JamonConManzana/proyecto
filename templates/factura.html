@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Facturación</title>
+</head>
+<body>
+    <h1>Registro de Factura</h1>
+
+    <!-- Formulario para crear una nueva factura -->
+    <h2>Generar Nueva Factura</h2>
+    <form method="post" action="/factura/agregar">
+        <label for="cliente_id">ID del Cliente:</label>
+        <input type="number" id="cliente_id" name="cliente_id" required><br>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required><br>
+
+        <label for="total">Total:</label>
+        <input type="number" id="total" name="total" step="0.01" required><br>
+
+        <label for="metodo_pago">Método de Pago:</label>
+        <input type="text" id="metodo_pago" name="metodo_pago"><br>
+
+        <button type="submit">Guardar Factura</button>
+    </form>
+
+    <!-- Lista de facturas emitidas -->
+    <h2>Facturas Emitidas</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Factura</th>
+                <th>ID Cliente</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Método de Pago</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for factura in facturas %}
+            <tr>
+                <td>{{ factura.id }}</td>
+                <td>{{ factura.cliente_id }}</td>
+                <td>{{ factura.fecha }}</td>
+                <td>{{ factura.total }}</td>
+                <td>{{ factura.metodo_pago }}</td>
+                <td>
+                    <a href="/factura/ver/{{ factura.id }}">Ver</a> |
+                    <a href="/factura/eliminar/{{ factura.id }}">Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">No hay facturas registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

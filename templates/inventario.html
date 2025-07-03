@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario</title>
+</head>
+<body>
+    <h1>Inventario de Productos</h1>
+
+    <!-- Formulario para agregar o actualizar registro de inventario -->
+    <h2>Agregar/Actualizar Inventario</h2>
+    <form method="post" action="{{ url_for('inventario') }}">
+        <label for="producto_id">ID del Producto:</label>
+        <input type="number" id="producto_id" name="producto_id" required><br>
+
+        <label for="stock_actual">Stock Actual:</label>
+        <input type="number" id="stock_actual" name="stock_actual" required><br>
+
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="ubicacion" name="ubicacion"><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <!-- Lista del inventario -->
+    <h2>Lista de Inventario</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Inventario</th>
+                <th>ID Producto</th>
+                <th>Nombre Producto</th>
+                <th>Stock Actual</th>
+                <th>Ubicación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in inventario %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.producto_id }}</td>
+                <td>{{ item.nombre_producto }}</td>
+                <td>{{ item.stock_actual }}</td>
+                <td>{{ item.ubicacion }}</td>
+                <td>
+                    <a href="/inventario/editar/{{ item.id }}">Editar</a> |
+                    <a href="/inventario/eliminar/{{ item.id }}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Factura</title>
+</head>
+<body>
+    <h1>Detalle de Factura</h1>
+
+    <!-- Formulario para agregar un producto a la factura -->
+    <h2>Agregar Producto a Factura</h2>
+    <form method="post" action="/detalle_factura/agregar">
+        <label for="factura_id">ID de la Factura:</label>
+        <input type="number" id="factura_id" name="factura_id" required><br>
+
+        <label for="producto_id">ID del Producto:</label>
+        <input type="number" id="producto_id" name="producto_id" required><br>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required><br>
+
+        <label for="precio_unitario">Precio Unitario:</label>
+        <input type="number" id="precio_unitario" name="precio_unitario" step="0.01" required><br>
+
+        <button type="submit">Agregar al Detalle</button>
+    </form>
+
+    <!-- Lista de productos facturados -->
+    <h2>Productos en la Factura</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Detalle</th>
+                <th>ID Factura</th>
+                <th>ID Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detalle in detalles %}
+            <tr>
+                <td>{{ detalle.id }}</td>
+                <td>{{ detalle.factura_id }}</td>
+                <td>{{ detalle.producto_id }}</td>
+                <td>{{ detalle.cantidad }}</td>
+                <td>{{ "%.2f"|format(detalle.precio_unitario) }}</td>
+                <td>{{ "%.2f"|format(detalle.cantidad * detalle.precio_unitario) }}</td>
+                <td>
+                    <a href="/detalle_factura/editar/{{ detalle.id }}">Editar</a> |
+                    <a href="/detalle_factura/eliminar/{{ detalle.id }}">Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7">No hay productos en la factura.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
